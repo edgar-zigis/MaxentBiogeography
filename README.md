@@ -3,7 +3,7 @@ This is a sample R project for future species distribution visualisation using M
 In order to use it, please download any species distribution data from GBIF in CSV format and future climatic data from WorldClim with a 5 minute resolution.
 
 1. Define preferred bioclimatic variables according to your investigated species ecology:
-```
+```R
 bioclim_vars <- c(
     BioClimaticVariable$ANNUAL_MEAN_TEMPERATURE,
     BioClimaticVariable$TEMPERATURE_SEASONALITY,
@@ -21,3 +21,18 @@ bioclim_vars <- c(
 **Example:**
 `future_bioclim_stack <- rast("climate/wc2.1_5m_bioc_EC-Earth3-Veg_ssp245_2041-2060.tif")`
 3. Run the main.R file for desired results
+---
+Adjust function parameters to get the best visual representation:
+```R
+generate_distribution_maps <- function(
+    study_area, 
+    species_data,
+    bioclimatic_variables,
+    future_bioclimatic_data,
+    draw_plot_sequentially = TRUE, # implies whether you want to draw plots side by side or one by one.
+    xlab = "Longitude",
+    ylab = "Latitude",
+    currentDistributionTitle = "Current distribution",
+    futureDistributionTitle = "Predicted future distribution"
+)
+```
