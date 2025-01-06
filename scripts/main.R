@@ -71,9 +71,9 @@ draw_sarcosoma_globossum_distribution <- function(study_area) {
     species_data,
     bioclim_vars,
     future_bioclim_stack,
-    draw_plot_sequentially = TRUE,
-    currentDistributionTitle = "Current distribution of Sarcosoma globossum",
-    futureDistributionTitle = "Predicted distribution of Sarcosoma globossum 2040-2060, SSP245"
+    draw_plot_sequentially = FALSE,
+    currentDistributionTitle = "Current distribution of\nSarcosoma globossum",
+    futureDistributionTitle = "Predicted distribution of\nSarcosoma globossum 2040-2060, SSP245"
   )
 }
 
