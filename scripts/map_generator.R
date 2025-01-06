@@ -51,10 +51,14 @@ generate_distribution_maps <- function(
     par(mfrow = c(1, 2))
   }
   
-  # Predict habitat suitability
+  # Predict current habitat suitability
   predict_distribution <- predict(bioclim_stack_raster, maxent_model)
   plot(predict_distribution, main = currentDistributionTitle, xlab = xlab, ylab = ylab)
   
+  # Add species data points to the current distribution map
+  points(species_points$decimalLongitude, species_points$decimalLatitude, pch = 20, cex = 0.3, col = "red")
+  
+  # Predict future habitat suitability
   future_predict_distribution <- predict(future_bioclim_stack_raster, maxent_model)
   plot(future_predict_distribution, main = futureDistributionTitle, xlab = xlab, ylab = ylab)
 }
