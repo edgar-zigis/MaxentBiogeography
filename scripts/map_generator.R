@@ -7,7 +7,6 @@ generate_distribution_maps <- function(
     species_data,
     bioclimatic_variables,
     future_bioclimatic_data,
-    draw_plot_sequentially = TRUE,
     xlab = "Longitude",
     ylab = "Latitude",
     currentDistributionTitle = "Current distribution",
@@ -44,12 +43,6 @@ generate_distribution_maps <- function(
   
   # Run MaxEnt model
   maxent_model <- maxent(x = bioclim_stack_raster, p = species_points)
-  
-  if (draw_plot_sequentially) {
-    par(mfrow = c(1, 1))
-  } else {
-    par(mfrow = c(1, 2))
-  }
   
   # Predict current habitat suitability
   predict_distribution <- predict(bioclim_stack_raster, maxent_model)

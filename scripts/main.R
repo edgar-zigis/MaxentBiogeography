@@ -13,22 +13,23 @@ study_area <- st_sfc(
   crs = 4326
 )
 
-draw_laphria_gibbosa_distribution <- function(study_area) {
+draw_cicadetta_montana_distribution <- function(study_area) {
   # Load species occurrence data and environmental layers
-  species_data <- read.csv("distribution/Laphria gibbosa.csv", sep = "\t", header = TRUE)
+  species_data <- read.csv("distribution/Cicadetta montana.csv", sep = "\t", header = TRUE)
   
   # Bioclimatic variables used in the analysis according to Laphria gibbosa ecology
   bioclim_vars <- c(
     BioClimaticVariable$ANNUAL_MEAN_TEMPERATURE,
+    BioClimaticVariable$TEMPERATURE_SEASONALITY,
     BioClimaticVariable$MAX_TEMPERATURE_OF_WARMEST_MONTH,
+    BioClimaticVariable$MEAN_TEMPERATURE_OF_WETTEST_QUARTER,
+    BioClimaticVariable$MEAN_TEMPERATURE_OF_COLDEST_QUARTER,
+    BioClimaticVariable$MEAN_TEMPERATURE_OF_WARMEST_QUARTER,
     BioClimaticVariable$MIN_TEMPERATURE_OF_COLDEST_MONTH,
     BioClimaticVariable$TEMPERATURE_ANNUAL_RANGE,
-    BioClimaticVariable$MEAN_TEMPERATURE_OF_WARMEST_QUARTER,
-    BioClimaticVariable$MEAN_TEMPERATURE_OF_COLDEST_QUARTER,
     BioClimaticVariable$ANNUAL_PRECIPITATION,
-    BioClimaticVariable$PRECIPITATION_OF_WETTEST_MONTH,
-    BioClimaticVariable$PRECIPITATION_OF_DRIEST_MONTH,
-    BioClimaticVariable$PRECIPITATION_SEASONALITY
+    BioClimaticVariable$PRECIPITATION_SEASONALITY,
+    BioClimaticVariable$PRECIPITATION_OF_WARMEST_QUARTER
   )
   
   # Load predicted climatic data for 2040-2060. EC-Earth3-Veg good for Europe.
@@ -39,9 +40,8 @@ draw_laphria_gibbosa_distribution <- function(study_area) {
     species_data,
     bioclim_vars,
     future_bioclim_stack,
-    draw_plot_sequentially = TRUE,
-    currentDistributionTitle = "Current distribution of Laphria gibbosa",
-    futureDistributionTitle = "Predicted distribution of Laphria gibbosa 2040-2060, SSP245"
+    currentDistributionTitle = "Current distribution of Cicadetta montana",
+    futureDistributionTitle = "Predicted distribution of Cicadetta montana 2040-2060, SSP245"
   )
 }
 
@@ -71,13 +71,12 @@ draw_sarcosoma_globossum_distribution <- function(study_area) {
     species_data,
     bioclim_vars,
     future_bioclim_stack,
-    draw_plot_sequentially = FALSE,
-    currentDistributionTitle = "Current distribution of\nSarcosoma globossum",
-    futureDistributionTitle = "Predicted distribution of\nSarcosoma globossum 2040-2060, SSP245"
+    currentDistributionTitle = "Current distribution of Sarcosoma globossum",
+    futureDistributionTitle = "Predicted distribution of Sarcosoma globossum 2040-2060, SSP245"
   )
 }
 
 # Call drawing maps
 
-draw_laphria_gibbosa_distribution(study_area)
+draw_cicadetta_montana_distribution(study_area)
 draw_sarcosoma_globossum_distribution(study_area)
